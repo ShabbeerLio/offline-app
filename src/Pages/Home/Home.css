@@ -1,0 +1,86 @@
+.ViewPage {
+  /* padding: 1rem; */
+  overflow: hidden;
+  background-color: #f7f9e8;
+}
+
+.ViewPage-box{
+  position: relative;
+}
+
+.ViewPage-box-view {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.ViewPage-box-view img ,
+.ViewPage-box-view video {
+  width: 100%;
+  height: 100vh;
+  object-fit: contain;
+  background-color: #f7f9e8;
+}
+
+.ViewPage-box-slider {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+  gap: 1rem;
+  background-color: #00000062;
+}
+
+.slider-box img ,
+.slider-box video {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+}
+.ViewPage-box-slider-main {
+  position: fixed;
+  bottom: -19%;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
+  transition: bottom 0.3s ease-in-out; /* Smooth transition */
+}
+
+.ViewPage-box-slider-main.active {
+  bottom: 0;
+}
+.ViewPage-box-slider-main.active .slider-button p svg{
+  rotate: 180deg;
+}
+
+.slider-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.slider-button p{
+  border-radius: 50px 50px 0 0;
+  background-color: #00000062;
+  margin: 0;
+  padding: 10px 30px;
+  color: white;
+}
+
+.view-link{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  padding: 10px;
+}
+.view-link a{
+  color: white;
+  background-color: #6A9C89;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 30px;
+}
+

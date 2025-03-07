@@ -1,0 +1,100 @@
+.Storage {
+  background-color: #f7f9e8;
+}
+
+.file-input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.status-icon {
+  text-align: center;
+  font-size: 18px;
+  color: green;
+}
+
+.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
+
+.preview {
+  width: 150px;
+  height: 50px;
+}
+
+.Storage {
+  text-align: center;
+}
+
+.upload-section {
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.upload-section select,
+.upload-section input {
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color:#D5E5D5 ;
+}
+
+.file-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.file-item img,
+.file-item video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.nav-links {
+  margin-top: 20px;
+}
+
+.storage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.storage-head a {
+  color: white;
+  background-color: #6A9C89;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 30px;
+}
