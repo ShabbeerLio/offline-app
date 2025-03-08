@@ -5,6 +5,8 @@ import * as pdfjsLib from "pdfjs-dist";
 import "pdfjs-dist/build/pdf.worker"; // Fix the worker issue
 import "./Storage.css";
 import { IoIosHome } from "react-icons/io";
+import { FaAnglesUp,FaPlay } from "react-icons/fa6";
+
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
@@ -73,7 +75,7 @@ const Storage = () => {
     <div className="Storage">
       <div className="storage-head">
         <h3>Storage</h3>
-        <Link to="/home"><IoIosHome/></Link>
+        <Link to="/home"><FaPlay/></Link>
       </div>
 
       {/* File Upload Section */}

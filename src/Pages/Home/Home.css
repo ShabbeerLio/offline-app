@@ -28,7 +28,7 @@
   align-items: center;
   overflow: auto;
   gap: 1rem;
-  background-color: #f7f9e84b;
+  background-color: #0000004b;
   padding: 10px;
 }
 
@@ -64,13 +64,14 @@
 }
 .slider-button p{
   color: white;
-  background-color: #6A9C89;
+  background-color: #00000079;
   padding: 10px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-self: center;
   font-size: 30px;
+  cursor: pointer;
 }
 
 .view-link{
@@ -82,7 +83,7 @@
 }
 .view-link a{
   color: white;
-  background-color: #6A9C89;
+  background-color: #00000079;
   padding: 10px;
   border-radius: 8px;
   display: flex;

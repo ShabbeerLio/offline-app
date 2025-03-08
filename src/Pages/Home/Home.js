@@ -2,8 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import { useFileContext } from "../../FileContext";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import { FaAnglesUp } from "react-icons/fa6";
+import { FaAnglesUp,FaPlay } from "react-icons/fa6";
 import { MdStorage } from "react-icons/md";
+
 
 const Home = () => {
   const { files } = useFileContext();
