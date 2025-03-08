@@ -47,6 +47,7 @@ const Home = () => {
   const handleFileClick = (index) => {
     setCurrentIndex(index);
     clearTimeout(timeoutRef.current);
+    setOpenscroll(false)
   };
 
   if (files.length === 0) {
@@ -61,6 +62,11 @@ const Home = () => {
             <Link to={"/storage"}>
               <MdStorage />
             </Link>
+            <div className="slider-button">
+              <p onClick={handleClickend}>
+                <FaAnglesUp />
+              </p>
+            </div>
           </div>
 
           {/* Main File Preview */}
@@ -91,18 +97,14 @@ const Home = () => {
             className={`ViewPage-box-slider-main ${openscroll === true ? "active" : ""
               }`}
           >
-            <div className="slider-button">
-              <p onClick={handleClickend}>
-                <FaAnglesUp />
-              </p>
-            </div>
+
             <div className="ViewPage-box-slider">
               {files.map((file, index) => (
                 <div key={index} className="slider-box" onClick={() => handleFileClick(index)}>
-                  {file.type === "image" && <img src={file.url} alt={file.name}  />}
-                  {file.type === "pdf" && <img src={file.url} alt="PDF Preview"  />}
+                  {file.type === "image" && <img src={file.url} alt={file.name} />}
+                  {file.type === "pdf" && <img src={file.url} alt="PDF Preview" />}
                   {file.type === "video" && (
-                    <video  muted>
+                    <video muted>
                       <source src={file.url} type="video/mp4" />
                     </video>
                   )}

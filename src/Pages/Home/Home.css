@@ -19,7 +19,7 @@
 .ViewPage-box-view video {
   width: 100%;
   height: 100vh;
-  object-fit: contain;
+  object-fit: cover;
   background-color: #f7f9e8;
 }
 
@@ -28,15 +28,18 @@
   align-items: center;
   overflow: auto;
   gap: 1rem;
-  background-color: #00000062;
+  background-color: #f7f9e84b;
+  padding: 10px;
 }
 
 .slider-box img ,
 .slider-box video {
   width: 200px;
-  height: 150px;
-  object-fit: contain;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
 }
+
 .ViewPage-box-slider-main {
   position: fixed;
   bottom: -19%;
@@ -49,6 +52,7 @@
 .ViewPage-box-slider-main.active {
   bottom: 0;
 }
+
 .ViewPage-box-slider-main.active .slider-button p svg{
   rotate: 180deg;
 }
@@ -59,11 +63,14 @@
   justify-content: center;
 }
 .slider-button p{
-  border-radius: 50px 50px 0 0;
-  background-color: #00000062;
-  margin: 0;
-  padding: 10px 30px;
   color: white;
+  background-color: #6A9C89;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  font-size: 30px;
 }
 
 .view-link{

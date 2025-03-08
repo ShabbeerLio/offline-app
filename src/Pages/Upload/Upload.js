@@ -4,6 +4,7 @@ import "pdfjs-dist/build/pdf.worker";
 import { useFileContext } from "../../FileContext";
 import { Link } from "react-router-dom";
 import "./Upload.css";
+import logo from "../../Assets/logo.png"
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
@@ -68,6 +69,9 @@ const Upload = () => {
         <div className="Upload">
             <div className="Upload-main">
                 <div className="Upload-box">
+                    <div className="upload-logo">
+                        <img src={logo} alt="" />
+                    </div>
                     <label htmlFor="file">Choose File</label>
                     <input
                         type="file"
@@ -78,10 +82,13 @@ const Upload = () => {
                         className="mb-4"
                     />
                     <div className="upload-links">
-                        <Link to={"/home"}>Home</Link>
+                        <Link to={"/home"}>Play</Link>
                         <Link to={"/storage"}>Storage</Link>
                     </div>
                 </div>
+            </div>
+            <div className="upload-footer">
+                <p>Dev. by :- <Link to={"https://digitaldezire.com/"}>Digital Dezire</Link></p>
             </div>
         </div>
     );

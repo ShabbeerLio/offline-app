@@ -9,6 +9,17 @@
     justify-self: center;
     height: 100%;
 }
+.upload-logo{
+    position: absolute;
+    top: -5%;
+left: 50%;
+transform: translate(-50%, -50%);
+}
+.upload-logo img{
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 5rem;
+}
 .Upload-box{
     display: flex;
     align-items: center;
@@ -17,6 +28,7 @@
     background-color: #D5E5D5;
     border-radius: 8px;
     padding: 2rem;
+    position: relative;
 }
 .Upload-box label{
     padding: 10px;
@@ -41,4 +53,23 @@
    background-color:#6A9C89 ;
    padding: 10px 12px;
    border-radius: 8px;
+}
+
+
+.upload-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.upload-footer p{
+    text-align: center;
+    margin: 0;
+    padding-bottom: 1rem;
+}
+.upload-footer p a{
+    color: black;
+    font-weight: 500;
+    
+    text-decoration: none;
 }
