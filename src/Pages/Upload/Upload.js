@@ -70,6 +70,7 @@ const Upload = () => {
             <div className="Upload-main">
                 <div className="Upload-box">
                     <div className="upload-logo">
+                        <h5>Welcome</h5>
                         <img src={logo} alt="" />
                     </div>
                     <label htmlFor="file">Choose File</label>
