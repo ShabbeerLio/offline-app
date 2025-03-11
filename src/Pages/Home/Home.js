@@ -92,7 +92,7 @@ const Home = () => {
 
   return (
     <div className="ViewPage">
-      <div className="ViewPage-main" {...handlers}>
+      <div className="ViewPage-main" >
         <div className="ViewPage-box">
           <div className="view-link">
             <Link to={"/storage"}>
@@ -106,7 +106,7 @@ const Home = () => {
           </div>
 
           {/* Main File Preview with Slide Effect */}
-          <div className={`ViewPage-box-view ${direction}`}>
+          <div className={`ViewPage-box-view ${direction}`} {...handlers}>
             {files[currentIndex].type === "image" && (
               <img src={files[currentIndex].url} alt={files[currentIndex].name} />
             )}
