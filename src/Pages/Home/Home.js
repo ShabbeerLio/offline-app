@@ -1,21 +1,54 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useFileContext } from "../../FileContext";
 import { Link } from "react-router-dom";
-import "./Home.css";
-import { FaAnglesUp,FaPlay } from "react-icons/fa6";
+import { useSwipeable } from "react-swipeable";
+import { FaAnglesUp } from "react-icons/fa6";
 import { MdStorage } from "react-icons/md";
-
+import "./Home.css";
 
 const Home = () => {
   const { files } = useFileContext();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(""); // Track slide direction
   const videoRef = useRef(null);
   const timeoutRef = useRef(null);
+  const sliderRef = useRef(null);
   const [openscroll, setOpenscroll] = useState(false);
 
-  // Toggle scroll button
+  // Toggle slider visibility
   const handleClickend = () => {
     setOpenscroll((prev) => !prev);
+  };
+
+  // Function to change the file with a sliding effect
+  const changeFile = (direction) => {
+    setDirection(direction > 0 ? "slide-right" : "slide-left"); // Set slide direction
+    setCurrentIndex((prevIndex) => {
+      const newIndex = (prevIndex + direction + files.length) % files.length;
+      scrollToActive(newIndex);
+      return newIndex;
+    });
+  };
+
+  // Swipe handlers for navigating files
+  const handlers = useSwipeable({
+    onSwipedLeft: () => changeFile(1), // Next file
+    onSwipedRight: () => changeFile(-1), // Previous file
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
+  // Auto-scroll to the active preview in the slider
+  const scrollToActive = (index) => {
+    if (sliderRef.current) {
+      const activeElement = sliderRef.current.children[index];
+      if (activeElement) {
+        sliderRef.current.scrollTo({
+          left: activeElement.offsetLeft - sliderRef.current.offsetWidth / 2 + activeElement.offsetWidth / 2,
+          behavior: "smooth",
+        });
+      }
+    }
   };
 
   useEffect(() => {
@@ -24,14 +57,14 @@ const Home = () => {
     clearTimeout(timeoutRef.current);
 
     const playNextFile = () => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % files.length);
+      changeFile(1);
     };
 
     if (files[currentIndex].type === "video") {
       const videoElement = videoRef.current;
       if (videoElement) {
-        videoElement.pause(); // Stop current video before switching
-        videoElement.currentTime = 0; // Reset playback
+        videoElement.pause();
+        videoElement.currentTime = 0;
         videoElement.play().catch((e) => console.warn("Autoplay failed:", e));
 
         videoElement.onended = () => {
@@ -46,9 +79,11 @@ const Home = () => {
   }, [currentIndex, files]);
 
   const handleFileClick = (index) => {
+    setDirection(index > currentIndex ? "slide-right" : "slide-left"); // Slide effect
     setCurrentIndex(index);
     clearTimeout(timeoutRef.current);
-    setOpenscroll(false)
+    setOpenscroll(false);
+    scrollToActive(index);
   };
 
   if (files.length === 0) {
@@ -57,7 +92,7 @@ const Home = () => {
 
   return (
     <div className="ViewPage">
-      <div className="ViewPage-main">
+      <div className="ViewPage-main" {...handlers}>
         <div className="ViewPage-box">
           <div className="view-link">
             <Link to={"/storage"}>
@@ -70,19 +105,14 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Main File Preview */}
-          <div className="ViewPage-box-view">
+          {/* Main File Preview with Slide Effect */}
+          <div className={`ViewPage-box-view ${direction}`}>
             {files[currentIndex].type === "image" && (
               <img src={files[currentIndex].url} alt={files[currentIndex].name} />
             )}
 
             {files[currentIndex].type === "video" && (
-              <video
-                ref={videoRef}
-                controls
-                autoPlay
-                key={files[currentIndex].url} // Ensures reloading when file changes
-              >
+              <video ref={videoRef} controls autoPlay key={files[currentIndex].url}>
                 <source src={files[currentIndex].url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
@@ -93,15 +123,15 @@ const Home = () => {
             )}
           </div>
 
-          {/* Slider for Previews */}
-          <div
-            className={`ViewPage-box-slider-main ${openscroll === true ? "active" : ""
-              }`}
-          >
-
-            <div className="ViewPage-box-slider">
+          {/* Scrollable Slider for Previews */}
+          <div className={`ViewPage-box-slider-main ${openscroll ? "active" : ""}`}>
+            <div className="ViewPage-box-slider" ref={sliderRef}>
               {files.map((file, index) => (
-                <div key={index} className="slider-box" onClick={() => handleFileClick(index)}>
+                <div
+                  key={index}
+                  className={`slider-box ${currentIndex === index ? "active" : ""}`}
+                  onClick={() => handleFileClick(index)}
+                >
                   {file.type === "image" && <img src={file.url} alt={file.name} />}
                   {file.type === "pdf" && <img src={file.url} alt="PDF Preview" />}
                   {file.type === "video" && (
